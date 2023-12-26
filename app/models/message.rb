@@ -7,8 +7,7 @@ class Message < ApplicationRecord
   def broadcast_create
     ActionCable.server.broadcast(
       "chat_messages_#{self.chat.id}",
-      partial: "messages/content",
-      locals: { message: self }
+      { partial: "messages/content", locals: { message: self } }
     )
   end
 end
