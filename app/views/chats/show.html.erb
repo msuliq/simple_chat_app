@@ -1,12 +1,15 @@
+<%= turbo_stream_from "chat_messages_#{@chat.id}" %>
 <%= render partial: 'shared/header' %>
 
 <h2><%= @chat.name %></h2>
 
-<%= turbo_frame_tag "chat_messages_#{@chat.id}", data: { controller: 'chat_messages', chat_id: @chat.id } do %>
+<%= turbo_frame_tag "chat_messages_#{@chat.id}" do %>
   <% if @chat.messages.present? %>
-    <% @chat.messages.each do |message| %>
-      <%= render partial: 'messages/content', locals: { message: message } %>
-    <% end %>
+    <div id='messages-list'>
+      <% @chat.messages.each do |message| %>
+        <%= render partial: 'chats/message', locals: { message: message } %>
+      <% end %>
+    </div>
   <% else %>
     <p>No messages in this chat yet</p>
   <% end %>

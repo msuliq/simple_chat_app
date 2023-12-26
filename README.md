@@ -1,12 +1,13 @@
 # README
 
 Download the repo and go the directory `simple_chat_app`
-Run `bundle install` to install all dependencies
-You have to a running Redis server for the app. You can install it with Homebrew or having it running in a docker container.
+Run `bundle install` to install all dependencies.
+You have to a running Redis server for the app. You can install it with Homebrew and have it running with `brew services start redis`.
+Run `rails db:migrate`.
 Run `rails s` to start the server
 Application is available on localhost `http://localhost:3000`
 
-Done based on the following requirements:
+Implemented based on the following requirements:
 
 ```
 Нужно сделать веб-приложение - простой онлайн-чат на Rails 7 с использованием технологии Hotwire - Turbo.

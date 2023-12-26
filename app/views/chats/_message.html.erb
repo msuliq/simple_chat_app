@@ -1,0 +1,4 @@
+<turbo-frame id=<%= "message_#{message.id}" %>>
+  <p><%= message.content %></p>
+  <p>Sent on <%= message.created_at.utc.strftime('%d %B %Y') %></p>
+</turbo-frame>

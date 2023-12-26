@@ -1,0 +1,5 @@
+<%= turbo_stream.append('messages-list') do %>
+  <% @chat.messages.each do |message| %>
+    <%= render partial: "message", locals: { message: } %>
+  <% end %>
+<% end %>

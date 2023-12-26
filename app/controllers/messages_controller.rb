@@ -5,9 +5,11 @@ class MessagesController < ApplicationController
     @message = @chat.messages.build(message_params)
 
     if @message.save
-      ActionCable.server.broadcast(
-        "chat_messages_#{params[:chat_id]}",
-        { partial: 'messages/content', locals: { message: @message } }
+      Turbo::StreamsChannel.broadcast_append_to(
+        "chat_messages_#{@chat.id}",
+        target: 'messages-list',
+        partial: 'chats/message',
+        locals: { message: @message }
       )
 
       redirect_to chat_path(@chat), notice: 'Message sent successfully'
