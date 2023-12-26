@@ -1,0 +1,23 @@
+<%= render partial: 'shared/header' %>
+
+<h1>Create a New Chat</h1>
+
+<%= form_with model: @chat, url: chats_path do |form| %>
+  <div>
+    <%= form.label :name, "Chat Name" %>
+    <br>
+    <%= form.text_field :name, required: true, placeholder: 'Enter name of the new chat' %>
+  </div>
+
+  <div>
+    <%= form.submit "Create chat" %>
+  </div>
+<% end %>
+
+<% if @chat.errors.any? %>
+  <ul>
+    <% @chat.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

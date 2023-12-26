@@ -1,0 +1,15 @@
+<%= render partial: 'shared/header' %>
+
+<% if @chats.present? %>
+  <% @chats.each do |chat| %>
+    <%= link_to chat_path(chat.id) do %>
+      <h3><%= chat.name %></h3>
+    <% end %>
+  <% end %>
+<% else %>
+  <h3>No existing chats</h3>
+<% end %>
+
+<%= link_to new_chat_path do %>
+  <button>Create new chat</button>
+<% end %>

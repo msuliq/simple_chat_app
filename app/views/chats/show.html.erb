@@ -1,0 +1,27 @@
+<%= render partial: 'shared/header' %>
+
+<h2><%= @chat.name %></h2>
+
+<%= turbo_frame_tag "chat_messages_#{@chat.id}", data: { controller: 'chat_messages', chat_id: @chat.id } do %>
+  <% if @chat.messages.present? %>
+    <% @chat.messages.each do |message| %>
+      <%= render partial: 'messages/content', locals: { message: message } %>
+    <% end %>
+  <% else %>
+    <p>No messages in this chat yet</p>
+  <% end %>
+<% end %>
+
+<div>
+  <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), data: { format: :turbo_stream, turbo_stream: true }) do |form| %>
+    <div>
+      <%= form.label :content, "New Message" %>
+      <br>
+      <%= form.text_area :content, placeholder: 'Type your message here', required: true %>
+    </div>
+
+    <div>
+      <%= form.submit "Send Message" %>
+    </div>
+  <% end %>
+</div>
