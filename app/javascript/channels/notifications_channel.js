@@ -18,11 +18,17 @@ consumer.subscriptions.create("NotificationsChannel", {
       console.warn("This browser does not support desktop notification");
     } else if (Notification.permission === "granted") {
       console.log("notification granted");
+      this.playNotificationSound();
       var notification = new Notification(data.title, { body: data.body });
     } else if (Notification.permission !== "denied") {
       console.log("notification permissions need to be requested");
     } else {
       console.warn("notification denied");
     }
+  },
+
+  playNotificationSound() {
+    const audio = new Audio('public/notification.wav');
+    audio.play();
   }
 });

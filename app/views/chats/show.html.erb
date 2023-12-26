@@ -6,7 +6,7 @@
 <%= turbo_frame_tag "chat_messages_#{@chat.id}" do %>
   <% if @chat.messages.present? %>
     <div id='messages-list'>
-      <% @chat.messages.each do |message| %>
+      <% @chat.messages.order(created_at: :asc).each do |message| %>
         <%= render partial: 'chats/message', locals: { message: message } %>
       <% end %>
     </div>
