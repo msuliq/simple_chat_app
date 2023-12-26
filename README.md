@@ -1,13 +1,16 @@
 # README
 
-Download the repo and go the directory `simple_chat_app`
-Run `bundle install` to install all dependencies.
-You have to a running Redis server for the app. You can install it with Homebrew and have it running with `brew services start redis`.
-Run `rails db:migrate`.
-Run `rails s` to start the server
-Application is available on localhost `http://localhost:3000`
+Для запуска приложения необходимо:
+  Скачать репозиторий и перейти в директорию `simple_chat_app`
+  Выполнить команду `bundle install` для установки всех зависимостей.
+  Для работы приложения необходим запущенный Redis сервер. Можно установить его с помощью Homebrew и запустить командой `brew services start redis`.
+  Выполнить команду `rails db:migrate`.
+  Выполнить команду `rails s` для запуска сервера.
+  Приложение доступно по адресу `http://localhost:3000` и `https://localhost:3001`
 
-Implemented based on the following requirements:
+Для проверки пуш уведомлений необходимо открыть программу в `https://localhost:3001` и принять разрешение на отправку уведомлений нажав на соответствующую кнопку на главной странице.
+
+Выполнено на основании следующего задания:
 
 ```
 Нужно сделать веб-приложение - простой онлайн-чат на Rails 7 с использованием технологии Hotwire - Turbo.
