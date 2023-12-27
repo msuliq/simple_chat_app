@@ -5,12 +5,7 @@ class MessagesController < ApplicationController
     @message = @chat.messages.build(message_params)
 
     if @message.save
-      Turbo::StreamsChannel.broadcast_append_to(
-        "chat_messages_#{@chat.id}",
-        target: 'messages-list',
-        partial: 'chats/message',
-        locals: { message: @message }
-      )
+      broadcast
 
       redirect_to chat_path(@chat), notice: 'Message sent successfully'
     else
@@ -36,5 +31,14 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def broadcast
+    Turbo::StreamsChannel.broadcast_append_to(
+      "chat_messages_#{@chat.id}",
+      target: 'messages-list',
+      partial: 'chats/message',
+      locals: { message: @message }
+    )
   end
 end
